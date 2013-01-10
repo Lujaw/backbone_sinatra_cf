@@ -43,6 +43,7 @@ var MainView = Backbone.View.extend({
     var frame = this.$el;
     var template = frame.contents().find('#data_container').html();
     var render = Mustache.to_html(template, this.model.get('inputs'));
+    $('#current_money').html('Rs.'+ this.model.attributes.meta.reward);
     frame.contents().find('#data_container').html(render);
     this.adjust_iframe();
     this.next_task();
