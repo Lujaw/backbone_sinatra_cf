@@ -2,6 +2,7 @@ require 'rubygems'
 require 'sinatra'
 require 'sinatra/base'
 require 'json'
+require 'pry'
 
 class MyApp < Sinatra::Base
 
@@ -17,7 +18,7 @@ TASKS_ARR = [
             }, 
             {"match_maker" =>
               {"inputs" => 
-                 { "image_url" => "http://sphotos-c.ak.fbcdn.net/hphotos-ak-ash3/63616_583823014967308_1334895622_n.jpg"
+                 { "image_url" => "https://cfcensusprod.s3-ap-southeast-1.amazonaws.com/1930/0124_resized.jpg"
                  },
                 "reward" => 20
               }
