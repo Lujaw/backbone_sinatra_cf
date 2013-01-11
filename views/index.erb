@@ -4,26 +4,53 @@
 <meta charset="utf-8" />
 <title>Backbone Init | Twitter app</title>
 <link rel="stylesheet" type="text/css" href="styles.css">
+<link rel="stylesheet" type="text/css" href="facebox.css">
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="underscore.js"></script>
 <script type="text/javascript" src="backbone.js"></script>
 <script type="text/javascript" src="mustache.js"></script>
 <script type="text/javascript" src="transit.js"></script>
+<script type="text/javascript" src="mousetrap.js"></script>
+<script type="text/javascript" src="facebox.js"></script>
 </head>
 <body>
 
   <header id="header">
     <div class="wrap">
-      Worker Ed
-      <div class="right"> Total: <b id="total_money">Rs. 00.00</b> | Reward: <b id="current_money">Rs. 00.00</b></div>
+      <ul class="dropdown left">
+        <li><h2 class="head">Iam Worker</h2>
+         <!--  <ul>
+            <li><a href="">Account</a></li>
+            <li><a href="">Team</a></li>
+            <li><a href="">Accumulated Earning: Rs. 1200 </a></li>
+            <li><a href="">Quality Score: 23.45 </a></li>
+          </ul> -->
+        </li>
+      </ul>
+      <div class="right"> 
+        <a href="#" id="flag_link" class="btn">Flag</a>
+        <a href="#" id="skip_link" class="btn">Skip</a>
+        Reward: <b id="current_money">Rs. 00.00</b></div>
     </div>
   </header>
 
   <div class="wrap" id="container">
-       
-<!--     <iframe id="render_frame" src="#" class="render_frame"></iframe>
- -->
   </div>
+
+
+<script type="text/template" id="flag_form_tmpl">
+
+  <form id="flag_form" action="#">
+     <label>
+     Reason: <br />
+     <textarea id="flag_reason"></textarea>
+     <label>
+     <input type="submit" value="Submit" />
+  </form>
+
+</script>
+
+<script type="text/javascript" src="app.js"></script>
 <script type="text/javascript" src="init.js"></script>
 </body>
 </html>
