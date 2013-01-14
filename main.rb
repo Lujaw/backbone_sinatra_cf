@@ -58,7 +58,12 @@ TASKS_ARR = [
       }
     int = rand(5)
     if (int == 1)
-      gold = [{:note => { :gold_message => "You nailed down a spot check correctly. Keep it up", :status => "success"}}, {:note => {:gold_message => "You failed to pass the spot check. Be careful next time.", :status => "warning"}}].shuffle.first
+      gold = [
+        {:note => {:message => "You nailed down a spot check correctly. Keep it up", :status => "success"}}, 
+        {:note => {:message => "You failed to pass the spot check. Be careful next time.", :status => "warning"}},
+        {:note => {:message => "1000 medical tasks just added to system. Enjoy.", :status => "notice"}},
+        {:note => {:message => "Some cloudworkers are found to submit blank tasks. Stop doing it or you'll be automatically banned.", :status => "error"}}
+        ].shuffle.first
       data.merge!(gold)
     end
     content_type :json
@@ -71,7 +76,6 @@ TASKS_ARR = [
   end
 
   post '/work' do
-    binding.pry
     puts JSON.parse(request.body.read)
   end
 

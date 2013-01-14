@@ -23,7 +23,6 @@ var MainView = Backbone.View.extend({
     next_frame.onload = function(){
       var data_container = next_frame.contentDocument.getElementById('data_container');
       var render = Mustache.to_html(data_container.innerHTML, me.model.get('inputs'));
-      log(me.model.get('inputs'));
       data_container.innerHTML = render;
       next_frame.style.height = next_frame.contentDocument.body.scrollHeight+100+'px'; 
       if ( typeof hook == "function"){ hook(me); }
@@ -56,27 +55,31 @@ var MainView = Backbone.View.extend({
     var after_render = this.after_render_do;
     this.buffer_render(after_render);
   },
-  after_render_do: function(self){
-    self.flip_frame();
-    self.next_task();
+  after_render_do: function(me){
+    me.flip_frame();
+    me.next_task();
   },
   next_task: function(){
-    var self = this;
-    flag_task.set('assignment_id', self.model.attributes.meta.assignment_id);
-    this.model.fetch({ success: function(){  
-        self.buffer_render();
-        if( self.model.get('note') != 'undefined' )
-        {
-          $().toastmessage('showToast', {
-            text     : self.model.get('note').gold_message,
-            stayTime : 8000,
-            sticky   : false,
-            position : 'top-right',
-            type     : self.model.get('note').status, //success, notice, warning, error
-          });
-        }
-      } 
+    var me = this;
+    flag_task.set('assignment_id', me.model.attributes.meta.assignment_id);
+    me.model.fetch({ success: function(){
+        me.buffer_render();
+        me.handle_notify();
+      }
     });
+  },
+  handle_notify: function(){
+    var me = this;
+    if( me.model.get('note') != 'undefined' )
+    {
+      $().toastmessage('showToast', {
+        text     : me.model.get('note').message,
+        stayTime : 8000,
+        sticky   : false,
+        position : 'top-right',
+        type     : me.model.get('note').status //success, notice, warning, error
+      });
+    }
   },
   post_and_render: function(data){
     this.model.attributes.output = data.output;

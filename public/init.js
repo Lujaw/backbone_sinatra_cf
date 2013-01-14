@@ -17,7 +17,6 @@ var CF = {
   flag_task: function(){ flag_view.render(); }
 };
 
-
 Mousetrap.bind('alt+f', function() { CF.flag_task(); });
 Mousetrap.bind('alt+s', function() { CF.skip_task(); });
 
@@ -32,5 +31,4 @@ $('#flag_form').live('submit',function(e){
   $.facebox.close();
   flag_task.save();
   CF.skip_task();
-
 });
