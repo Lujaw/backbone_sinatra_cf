@@ -15,7 +15,7 @@ TASKS_ARR = [
                     },
                     "reward" => 10,
                     "assignment_id" => 1,
-                    "assignment_duration" => 10
+                    "assignment_duration" => 100
               }
             }, 
             {"match_maker" =>
@@ -24,7 +24,7 @@ TASKS_ARR = [
                  },
                 "reward" => 20,
                 "assignment_id" => 2,
-                "assignment_duration" => 20
+                "assignment_duration" => 200
               }
             }, 
             {"census" => 
@@ -35,7 +35,7 @@ TASKS_ARR = [
                 },
                 "reward" => 30,
                 "assignment_id" => 3,
-                "assignment_duration" => 30
+                "assignment_duration" => 300
               }
             }]
 
@@ -57,15 +57,16 @@ TASKS_ARR = [
         :meta => { :reward => random_task[template_id]['reward'], :assignment_id => random_task[template_id]['assignment_id'], :assignment_duration => random_task[template_id]['assignment_duration']}
       }
     int = rand(5)
-    if (int == 1)
+    if (int == 3)
       gold = [
-        {:note => {:message => "You nailed down a spot check correctly. Keep it up", :status => "success"}}, 
-        {:note => {:message => "You failed to pass the spot check. Be careful next time.", :status => "warning"}},
         {:note => {:message => "1000 medical tasks just added to system. Enjoy.", :status => "notice"}},
         {:note => {:message => "Some cloudworkers are found to submit blank tasks. Stop doing it or you'll be automatically banned.", :status => "error"}}
         ].shuffle.first
       data.merge!(gold)
+    elsif (int == 1)
+      data.merge!({:no_more_task => true})
     end
+      data.merge!({:gold => true})
     content_type :json
       data.to_json
   end
@@ -77,6 +78,8 @@ TASKS_ARR = [
 
   post '/work' do
     puts JSON.parse(request.body.read)
+    content_type :json
+      {:text => "You nailed it man"}.to_json
   end
 
 end

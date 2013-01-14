@@ -20,7 +20,12 @@ var CF = {
 Mousetrap.bind('alt+f', function() { CF.flag_task(); });
 Mousetrap.bind('alt+s', function() { CF.skip_task(); });
 
-$('#skip_link, #time_over_next').live('click',function(){ $.facebox.close(); CF.skip_task(); });
+$('#skip_link, #time_over_next, #continue').live('click',function(){ $.facebox.close(); CF.skip_task(); });
+$('#continue').live('click',function(){ 
+  $.facebox.close();
+  Task_view.flip_frame();
+  Task_view.next_task();
+});
 $('#flag_link').click(function(){ CF.flag_task(); });
 
 $('#flag_form').live('submit',function(e){
