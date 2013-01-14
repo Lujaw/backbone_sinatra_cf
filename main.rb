@@ -52,11 +52,17 @@ TASKS_ARR = [
     random_task = TASKS_ARR.shuffle.first 
     template_id = random_task.keys.first
     sleep(0.5)
-    content_type :json
-      { :template => template_id, 
+    data = { :template => template_id, 
         :inputs => random_task[template_id]['inputs'],
         :meta => { :reward => random_task[template_id]['reward'], :assignment_id => random_task[template_id]['assignment_id'], :assignment_duration => random_task[template_id]['assignment_duration']}
-      }.to_json
+      }
+    int = rand(5)
+    if (int == 1)
+      gold = [{:note => { :gold_message => "You nailed down a spot check correctly. Keep it up", :status => "success"}}, {:note => {:gold_message => "You failed to pass the spot check. Be careful next time.", :status => "warning"}}].shuffle.first
+      data.merge!(gold)
+    end
+    content_type :json
+      data.to_json
   end
 
   post '/flag' do

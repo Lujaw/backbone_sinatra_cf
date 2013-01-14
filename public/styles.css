@@ -29,7 +29,7 @@ ul{
   width: 100%;
   top: 0;
   background: #017890;
-  z-index: 100;
+  z-index: 10;
 }
 .head{
   font-size: 20px;

@@ -63,7 +63,20 @@ var MainView = Backbone.View.extend({
   next_task: function(){
     var self = this;
     flag_task.set('assignment_id', self.model.attributes.meta.assignment_id);
-    this.model.fetch({ success: function(){  self.buffer_render(); } });
+    this.model.fetch({ success: function(){  
+        self.buffer_render();
+        if( self.model.get('note') != 'undefined' )
+        {
+          $().toastmessage('showToast', {
+            text     : self.model.get('note').gold_message,
+            stayTime : 8000,
+            sticky   : false,
+            position : 'top-right',
+            type     : self.model.get('note').status, //success, notice, warning, error
+          });
+        }
+      } 
+    });
   },
   post_and_render: function(data){
     this.model.attributes.output = data.output;
