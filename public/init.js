@@ -12,7 +12,7 @@ var Task_view = new MainView({ model: Task });
 Task.fetch({ success: function(){ Task_view.render(); } });
 
 var CF = {
-  submit: function(){ Task_view.post_and_render(); },
+  submit: function(){ var data = $('.render_frame:first').contents().find('form').serializeObject(); Task_view.post_and_render(data); },
   skip_task: function(){ Task_view.skip(); },
   flag_task: function(){ flag_view.render(); }
 };
@@ -21,7 +21,7 @@ var CF = {
 Mousetrap.bind('alt+f', function() { CF.flag_task(); });
 Mousetrap.bind('alt+s', function() { CF.skip_task(); });
 
-$('#skip_link').click(function(){ CF.skip_task(); });
+$('#skip_link, #time_over_next').live('click',function(){ $.facebox.close(); CF.skip_task(); });
 $('#flag_link').click(function(){ CF.flag_task(); });
 
 $('#flag_form').live('submit',function(e){

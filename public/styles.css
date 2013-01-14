@@ -76,3 +76,18 @@ ul{
   position:relative;
   top:1px;
 }
+#countdown{
+  font-size: 1.2em;
+}
+#facebox h2{
+  border-bottom: 1px solid #ccc;
+  margin: 0;
+  padding: 10px 0pc;
+  border-radius: 4px 4px 0px 0px;
+  margin-bottom: 14px;
+  color: #369;
+}
+#flag_form textarea{
+  width: 360px;
+  height: 80px;
+}

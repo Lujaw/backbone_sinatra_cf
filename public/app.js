@@ -46,8 +46,10 @@ var MainView = Backbone.View.extend({
         $(this).addClass('gone');
         $('.render_frame:nth-child(2)').fadeIn(200);
         $('.gone').remove();
-      });     
+      });
     }
+    this.timer(this.model.attributes.meta.assignment_duration);
+     
   },
 
   render: function(){
@@ -61,11 +63,11 @@ var MainView = Backbone.View.extend({
   next_task: function(){
     var self = this;
     flag_task.set('assignment_id', self.model.attributes.meta.assignment_id);
-    log(flag_task.get('assignment_id'));
     this.model.fetch({ success: function(){  self.buffer_render(); } });
   },
   post_and_render: function(data){
-    //todo post
+    this.model.attributes.output = data.output;
+    this.model.save();
     this.flip_frame();
     this.next_task();
   },
@@ -75,6 +77,13 @@ var MainView = Backbone.View.extend({
   skip: function(){
     this.flip_frame();
     this.next_task();
+  },
+  timer: function(timecop){
+     $('#countdown').countdown({
+      expire_after : timecop
+    },
+      function(){ $.facebox("<h2>Task Expired</h2><p>You could not complete this task on time. Try <a href='#' id='time_over_next'>next</a> task.</p>"); }
+    );
   }
 });
 

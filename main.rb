@@ -14,15 +14,17 @@ TASKS_ARR = [
                        "text" => "This is something that is gonna be huge and HUGE"
                     },
                     "reward" => 10,
-                    "assignment_id" => 1
+                    "assignment_id" => 1,
+                    "assignment_duration" => 10
               }
             }, 
             {"match_maker" =>
               {"inputs" => 
-                 { "image_url" => "https://cfcensusprod.s3-ap-southeast-1.amazonaws.com/1930/0124_resized.jpg"
+                 { "image_url" => "http://www.finewallpaperss.com/wp-content/uploads/2012/10/Funny-Jokes-Wallpaper.jpg"
                  },
                 "reward" => 20,
-                "assignment_id" => 2
+                "assignment_id" => 2,
+                "assignment_duration" => 20
               }
             }, 
             {"census" => 
@@ -32,7 +34,8 @@ TASKS_ARR = [
                   "age_image_url" => "http://us-census-app2.0.s3.amazonaws.com/image/age_slice.jpg"
                 },
                 "reward" => 30,
-                "assignment_id" => 3
+                "assignment_id" => 3,
+                "assignment_duration" => 30
               }
             }]
 
@@ -48,16 +51,22 @@ TASKS_ARR = [
   get '/work' do
     random_task = TASKS_ARR.shuffle.first 
     template_id = random_task.keys.first
+    sleep(0.5)
     content_type :json
       { :template => template_id, 
         :inputs => random_task[template_id]['inputs'],
-        :meta => { :reward => random_task[template_id]['reward'], :assignment_id => random_task[template_id]['assignment_id']}
+        :meta => { :reward => random_task[template_id]['reward'], :assignment_id => random_task[template_id]['assignment_id'], :assignment_duration => random_task[template_id]['assignment_duration']}
       }.to_json
   end
 
   post '/flag' do
     params = JSON.parse(request.body.read)
     puts params
+  end
+
+  post '/work' do
+    binding.pry
+    puts JSON.parse(request.body.read)
   end
 
 end
