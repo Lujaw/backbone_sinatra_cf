@@ -13,9 +13,20 @@ module RubyJS
               errors = []
               options = JSON.parse(options)
               middle_name = options[:middle_name]
-              unless middle_name.upcase == 'J.'
-                errors << {field: "middle_name", input: middle_name, expected: 'J.'}
+              unless middle_name.upcase == 'J'
+                errors << {field: "middle_name", input: middle_name, expected: 'J'}
               end
+
+              first_name = options[:first_name]
+              unless first_name.upcase == 'SPROUT'
+                errors << {field: "first_name", input: first_name, expected: 'SPROUT'}
+              end
+
+              last_name = options[:last_name]
+              unless last_name.upcase == 'TECH'
+                errors << {field: "last_name", input: last_name, expected: 'TECH'}
+              end
+
               age = options[:age]
               unless age == '20'
                 errors << {field: "age", input: age, expected: '20'}

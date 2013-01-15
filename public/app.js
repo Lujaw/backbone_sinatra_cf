@@ -23,14 +23,11 @@ var MainView = Backbone.View.extend({
 
     frame.onload = function(){
       var data_container = frame.contentDocument.getElementById('data_container');
-      log('-------------------');
-      log(me.model.attributes);
-      log(me.model.get('inputs'));
-      log("#####################");
       var render = Mustache.to_html(data_container.innerHTML, me.model.get('inputs'));
       data_container.innerHTML = render;
       auto_resize_task_iframe(frame);
       if ( typeof hook == "function"){ hook(me); }
+      me.enable_skip();
     };
   },
 
@@ -44,6 +41,8 @@ var MainView = Backbone.View.extend({
       if( this.model.get('first_run') )
       {
         this.model.set('first_run', false);
+        $('#progress_indicator').animate({width: '80%'}, 300);
+        $('#tmp_loader').remove();
         $('.render_frame:first').addClass('current_task').show();
 
       }else{
@@ -59,6 +58,7 @@ var MainView = Backbone.View.extend({
       }
       this.timer(this.model.attributes.meta.assignment_duration);
     }
+    this.disable_skip();
   },
 
   render: function(){
@@ -76,37 +76,43 @@ var MainView = Backbone.View.extend({
       me.model.clear();
       me.model.fetch({ success: function(){
           me.buffer_render();
-          me.handle_notify();
+          if( me.model.get('note') != undefined )
+          {
+            me.handle_notify(me.model.get('note').message, me.model.get('note').status);
+          }
         }
       });
   },
-  handle_notify: function(){
-    var me = this;
-    if( me.model.get('note') != undefined )
-    {
+  handle_notify: function(msg, status){
       $().toastmessage('showToast', {
-        text     : me.model.get('note').message,
+        text     : msg,
         stayTime : 8000,
         sticky   : false,
-        position : 'bottom-right',
-        type     : me.model.get('note').status //success, notice, warning, error
+        position : 'top-right',
+        type     : status //success, notice, warning, error
       });
-    }
   },
   post_and_render: function(data){
     var me = this;
     me.current.output = data.output;
     var tmp_task = new Main(me.current);
     if(me.current.gold){
-      $.facebox('<h2>You just did a spot check.</h2>We are checking your answers...please wait...<br />');
       tmp_task.save();
       $.countdown.reset();
       var str = unescape(tmp_task.attributes.spotboy);
       eval(Opal.Opal.Parser.$new().$parse(str));
       var op = JSON.parse( Opal.top.$validate(JSON.stringify( tmp_task.attributes.output )) );
-      this.render_spot_check(op);
-      $('#facebox .content').append('<br /><a href="#" id="continue" class="btn">Continue to work</a>');
-     
+
+      if (op.length == 0) {
+        me.handle_notify('Congratulation! You just nailed down spot check. Keep it up.','success');
+        me.flip_frame();
+        me.next_task();
+      }
+      else{
+        $.facebox('<h2>You just did a spot check.</h2><br />');
+        this.render_spot_check(op);
+        $('#facebox .content').append('<br /><a href="#" id="continue" class="btn">Continue to work</a>');
+      }
     }else{
       tmp_task.save();
       me.flip_frame();
@@ -141,6 +147,12 @@ var MainView = Backbone.View.extend({
       tbody.append(temp(i));
     });
     $('#facebox .content').append(table);
+  },
+  enable_skip: function(){
+    $('#skip_link').animate({ opacity: 1},400).removeAttr('disabled');
+  },
+  disable_skip: function(){
+    $('#skip_link').animate({ opacity: 0.4 },400).attr('disabled','disabled');
   }
 });
 

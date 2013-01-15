@@ -8,8 +8,7 @@
   <link rel="stylesheet" href="http://us-census.s3.amazonaws.com/css/bootstrap.min.css">
   <link rel="stylesheet" href="http://us-census-app2.0.s3.amazonaws.com/css/jquery-ui-1.9.2.custom.min.css">
   <link rel="stylesheet" href="http://us-census-app2.0.s3.amazonaws.com/css/tipTip.css">
-  <link rel="stylesheet" href="http://us-census-app2.0.s3.amazonaws.com/css/census_person_digitization.0.2.css">
-
+  <link rel="stylesheet" href="http://us-census-app2.0.s3.amazonaws.com/css/census_person_digitization.0.1.css">
 </head>
 <body>
   <div id="wi_wrap">
@@ -121,83 +120,79 @@
           <div class ="image age"><img id="age_image" src="{{age_image_url;}}" /></div> -->
 
 
-<div class ="image age"><img id="age_image" src="{{age_image_url}}" />
-  <span class ="age-image-help"><span class= "help_arrow">&uarr;</span> Gender/Status/Age <span class= "help_arrow">&uarr;</span>
-</div>
-<div class ="image name">
-  <div class="name-sheet">
-    <a href="#" id="show_pvs_image">Show previous name<span class="shortcuts_help"> (Ctrl+Shift+P)</span></a>
-    <div class="prv_img_div"></div>
-  </div>
-  <img id="name_image" src="{{name_image_url}}" />
-</div>
-
-
-<!--    For Local Test   -->
-<!-- <div class ="image age"><img id="age_image" src="{{age_image_url}}" /></div> -->
-<!-- <div class ="image name"><img id="name_image" src="{{name_image_url}}" /></div> -->
-
-
-</div>
+          <div class ="image age"><img id="age_image" src="{{age_image_url}}" />
+            <div class ="age-image-help">
+              <span class= "help_arrow">&uarr;</span> Gender/Status/Age <span class= "help_arrow">&uarr;</span>
+            </div>
+          </div>
+          <div class ="image name">
+            <div class="name-sheet">
+              <a href="#" id="show_pvs_image">Show previous name<span class="shortcuts_help"> (Ctrl+Shift+P)</span></a>
+              <div class="prv_img_div"></div>
+            </div>
+            <img id="name_image" src="{{name_image_url}}" />
+          </div>
+          <!--    For Local Test   -->
+          <!-- <div class ="image age"><img id="age_image" src="{{age_image_url}}" /></div> -->
+          <!-- <div class ="image name"><img id="name_image" src="{{name_image_url}}" /></div> -->
+      </div>
 </div>
 
 <div class = "input_fields">
   <form id="cf_task_form" action="submit">
-    <ul class = "data_field">
-      <li>
-        <label ><span class ="input_label">Age:  <a href="#" id="age_tip"></a></span>
-          <input  class="age short" id="age" name="output[age]"  tabindex="1" maxlength= "5" />
-        </label>
-      </li>
-      <li>
-        <label  ><span class ="input_label">Last Name:</span>
-          <input  class="name" id="last_name" name="output[last_name]" tabindex="2" data-name="last name" maxlength= "25"/>
-        </label>
-      </li>
-      <li>
-        <label ><span class ="input_label">First Name:</span>
-          <input  class="name" id="first_name" name="output[first_name]" tabindex="3" data-name="first name" maxlength= "25"/>
-        </label>
-      </li>
-      <li>
-        <label ><span class ="input_label">Middle Initial:</span>
-          <input  class="name" id="middle_name" name="output[middle_name]" maxlength="1" tabindex="4" />
-        </label>
-      </li>
-      <li>
-        <div id ="submit_div">
-          <input id="submit_btn" type="button" tabindex="6" class="wi-btn" value="Submit (Press Enter)"/>
-        </div>
-      </li>
-    </ul>
-    <ul id="unpaid-options">
-      <li>
-        <h4>Skip the task if the image is Unreadable</h4>
-      </li>
-      <li>
-        <h4>Flag the task if the image has No Name</h4>
-      </li>
-      <li> <em class="title">Unpaid Options</em> </li>
-      <li>
-        <span class="note">Note: It is very important that you submit accurate records. Inaccurate submission can count against your quality score and can have your pay reversed even if found several days after you submit it. These options are here to help you keep your accuracy and pay up high! </span>
-      </li>
-    </ul>
-
-
+      <ul class = "data_field">
+        <li>
+          <label ><span class ="input_label">Age:  <a href="#" id="age_tip"></a></span>
+            <input  class="age short" id="age" name="output[age]"  tabindex="1" maxlength= "5" />
+          </label>
+        </li>
+        <li>
+          <label  ><span class ="input_label">Last Name:</span>
+            <input  class="name" id="last_name" name="output[last_name]" tabindex="2" data-name="last name" maxlength= "25"/>
+          </label>
+        </li>
+        <li>
+          <label ><span class ="input_label">First Name:</span>
+            <input  class="name" id="first_name" name="output[first_name]" tabindex="3" data-name="first name" maxlength= "25"/>
+          </label>
+        </li>
+        <li>
+          <label ><span class ="input_label">Middle Initial:</span>
+            <input  class="name" id="middle_name" name="output[middle_name]" maxlength="1" tabindex="4" />
+          </label>
+        </li>
+        <li>
+          <div id ="submit_div">
+            <input id="submit_btn" type="button" tabindex="6" class="wi-btn" value="Submit (Press Enter)" />
+          </div>
+        </li>
+      </ul>
+      <ul id="unpaid-options">
+        <li>
+          <h4>Skip the task if the image is Unreadable</h4>
+        </li>
+        <li>
+          <h4>Flag the task if the image has No Name</h4>
+        </li>
+        <li> <em class="title">Unpaid Options</em> </li>
+        <li>
+          <span class="note">Note: It is very important that you submit accurate records. Inaccurate submission can count against your quality score and can have your pay reversed even if found several days after you submit it. These options are here to help you keep your accuracy and pay up high! </span>
+        </li>
+      </ul>
   </form>
+
   <div id="fuzzy_search"></div>
 </div>
 </div>
 </div>
 
-<script src="http://us-census-app2.0.s3.amazonaws.com/js/jQuery-v1.8.3.js" type="text/javascript"></script>
+<script src="http://code.jquery.com/jquery-latest.js" type="text/javascript"></script>
 <script src="http://us-census-app2.0.s3.amazonaws.com/js/jquery-ui-1.9.2.custom.min.js" type="text/javascript"></script>
 <script src="http://us-census-app2.0.s3.amazonaws.com/js/tipTip.minified.js" type="text/javascript"></script>
 <script src="http://us-census-app2.0.s3.amazonaws.com/js/facebox.js" type="text/javascript"></script>
 <script src="http://us-census-app2.0.s3.amazonaws.com/js/jquery.collapse.js" type="text/javascript"></script>
 <script src="http://us-census-app2.0.s3.amazonaws.com/js/jquery.collapse_storage.js" type="text/javascript"></script>
-<script type="text/javascript" src="http://us-census-app2.0.s3.amazonaws.com/js/tipTip.minified.js"></script>
-<script src="census_person_digitization.js" type="text/javascript"></script>
+<script src="http://us-census-app2.0.s3.amazonaws.com/js/census_person_digitization.0.1.js" type="text/javascript"></script>
 
 <!-- /:::::::::::* for local testing :::::::::::::::*/ -->
 <!-- <script src="../js/census_person_digitization.0.1.js" type="text/javascript"></script> -->

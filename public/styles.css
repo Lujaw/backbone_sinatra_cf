@@ -2,8 +2,11 @@ body{
   margin: 0;
   padding: 0;
   padding-top: 50px;
-  background: #67a;
+  background: #def;
   font-family: arial;
+}
+h3{
+  color: #333
 }
 ul{
   margin: 0;
@@ -90,4 +93,239 @@ ul{
 #flag_form textarea{
   width: 360px;
   height: 80px;
+}
+button{
+  cursor: pointer;
+}
+/* CSS3 Progress bars by Josh Sullivan
+   @jsullivandigs on Twitter
+   josh@dipperstove.com */
+
+.bar_container {
+  margin: 0 auto;
+  padding: 5px;
+  height: 20px;
+  background: #a0a0a0;
+  -webkit-box-shadow: 0px 1px 1px 0px #f0f0f0;
+  -moz-box-shadow: 0px 1px 1px 0px #f0f0f0;
+  box-shadow: 0px 1px 0px 0px #f0f0f0;
+}
+
+.bar_mortice {
+  height: 20px;
+  background: #777;
+  -webkit-box-shadow: inset 0px 1px 2px 0px #333;
+  -moz-box-shadow: inset 0px 1px 2px 0px #333;
+  box-shadow: inset 0px 1px 2px 0px #333;
+  border-bottom: 1px solid #d0d0d0;
+}
+
+.progress {
+  height: 19px;
+  background: #FFF;
+  float: left;
+  background: -moz-linear-gradient(top,  #ffffff 0%, #e5e5e5 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ffffff), color-stop(100%,#e5e5e5));
+  background: -webkit-linear-gradient(top,  #ffffff 0%,#e5e5e5 100%);
+  background: -o-linear-gradient(top,  #ffffff 0%,#e5e5e5 100%);
+  background: -ms-linear-gradient(top,  #ffffff 0%,#e5e5e5 100%);
+  background: linear-gradient(top,  #ffffff 0%,#e5e5e5 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#e5e5e5',GradientType=0 );
+  border-top: 1px solid #fff;
+  border-bottom: 1px solid #999;
+}
+
+/*=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+  TINY
+=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=*/
+.container_tiny {
+  margin: 0 auto;
+  padding: 3px;
+  height: 7px;
+  background: #a0a0a0;
+  -webkit-box-shadow: 0px 1px 1px 0px #f0f0f0;
+  -moz-box-shadow: 0px 1px 1px 0px #f0f0f0;
+  box-shadow: 0px 1px 0px 0px #f0f0f0;
+}
+
+/*=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+  STYLES
+=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=*/
+
+.rounded_bar_container {
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  border-radius: 10px;
+}
+.rounded {
+  -webkit-border-radius: 6px;
+  -moz-border-radius: 6px;
+  border-radius: 6px;
+}
+
+/* BLUE */
+
+.blue {
+  background: #00AAFF;
+  background: -moz-linear-gradient(top,  #00AAFF 0%, #0093dd 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#00AAFF), color-stop(100%,#0093dd));
+  background: -webkit-linear-gradient(top,  #00AAFF 0%,#0093dd 100%);
+  background: -o-linear-gradient(top,  #00AAFF 0%,#0093dd 100%);
+  background: -ms-linear-gradient(top,  #00AAFF 0%,#0093dd 100%);
+  background: linear-gradient(top,  #00AAFF 0%,#0093dd 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00AAFF', endColorstr='#0093dd',GradientType=0 );
+  border-top: 1px solid #88d7ff;
+  border-bottom: 1px solid #069;
+}
+.blue_container {background: #069;}
+.blue_mortice {
+  background: #046;
+  border-bottom: 1px solid #08c;
+}
+table {
+  max-width: 100%;
+  background-color: transparent;
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+.table {
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.table th,
+.table td {
+  padding: 8px;
+  line-height: 20px;
+  text-align: left;
+  vertical-align: top;
+  border-top: 1px solid #dddddd;
+}
+
+.table th {
+  font-weight: bold;
+}
+
+.table thead th {
+  vertical-align: bottom;
+}
+
+.table caption + thead tr:first-child th,
+.table caption + thead tr:first-child td,
+.table colgroup + thead tr:first-child th,
+.table colgroup + thead tr:first-child td,
+.table thead:first-child tr:first-child th,
+.table thead:first-child tr:first-child td {
+  border-top: 0;
+}
+
+.table tbody + tbody {
+  border-top: 2px solid #dddddd;
+}
+
+.table .table {
+  background-color: #ffffff;
+}
+
+.table-condensed th,
+.table-condensed td {
+  padding: 4px 5px;
+}
+
+.table-bordered {
+  border: 1px solid #dddddd;
+  border-collapse: separate;
+  *border-collapse: collapse;
+  border-left: 0;
+  -webkit-border-radius: 4px;
+     -moz-border-radius: 4px;
+          border-radius: 4px;
+}
+
+.table-bordered th,
+.table-bordered td {
+  border-left: 1px solid #dddddd;
+}
+
+.table-bordered caption + thead tr:first-child th,
+.table-bordered caption + tbody tr:first-child th,
+.table-bordered caption + tbody tr:first-child td,
+.table-bordered colgroup + thead tr:first-child th,
+.table-bordered colgroup + tbody tr:first-child th,
+.table-bordered colgroup + tbody tr:first-child td,
+.table-bordered thead:first-child tr:first-child th,
+.table-bordered tbody:first-child tr:first-child th,
+.table-bordered tbody:first-child tr:first-child td {
+  border-top: 0;
+}
+
+.table-bordered thead:first-child tr:first-child > th:first-child,
+.table-bordered tbody:first-child tr:first-child > td:first-child {
+  -webkit-border-top-left-radius: 4px;
+          border-top-left-radius: 4px;
+  -moz-border-radius-topleft: 4px;
+}
+
+.table-bordered thead:first-child tr:first-child > th:last-child,
+.table-bordered tbody:first-child tr:first-child > td:last-child {
+  -webkit-border-top-right-radius: 4px;
+          border-top-right-radius: 4px;
+  -moz-border-radius-topright: 4px;
+}
+
+.table-bordered thead:last-child tr:last-child > th:first-child,
+.table-bordered tbody:last-child tr:last-child > td:first-child,
+.table-bordered tfoot:last-child tr:last-child > td:first-child {
+  -webkit-border-bottom-left-radius: 4px;
+          border-bottom-left-radius: 4px;
+  -moz-border-radius-bottomleft: 4px;
+}
+
+.table-bordered thead:last-child tr:last-child > th:last-child,
+.table-bordered tbody:last-child tr:last-child > td:last-child,
+.table-bordered tfoot:last-child tr:last-child > td:last-child {
+  -webkit-border-bottom-right-radius: 4px;
+          border-bottom-right-radius: 4px;
+  -moz-border-radius-bottomright: 4px;
+}
+
+.table-bordered tfoot + tbody:last-child tr:last-child td:first-child {
+  -webkit-border-bottom-left-radius: 0;
+          border-bottom-left-radius: 0;
+  -moz-border-radius-bottomleft: 0;
+}
+
+.table-bordered tfoot + tbody:last-child tr:last-child td:last-child {
+  -webkit-border-bottom-right-radius: 0;
+          border-bottom-right-radius: 0;
+  -moz-border-radius-bottomright: 0;
+}
+
+.table-bordered caption + thead tr:first-child th:first-child,
+.table-bordered caption + tbody tr:first-child td:first-child,
+.table-bordered colgroup + thead tr:first-child th:first-child,
+.table-bordered colgroup + tbody tr:first-child td:first-child {
+  -webkit-border-top-left-radius: 4px;
+          border-top-left-radius: 4px;
+  -moz-border-radius-topleft: 4px;
+}
+
+.table-bordered caption + thead tr:first-child th:last-child,
+.table-bordered caption + tbody tr:first-child td:last-child,
+.table-bordered colgroup + thead tr:first-child th:last-child,
+.table-bordered colgroup + tbody tr:first-child td:last-child {
+  -webkit-border-top-right-radius: 4px;
+          border-top-right-radius: 4px;
+  -moz-border-radius-topright: 4px;
+}
+
+.table-striped tbody > tr:nth-child(odd) > td,
+.table-striped tbody > tr:nth-child(odd) > th {
+  background-color: #f9f9f9;
+}
+
+.table-hover tbody tr:hover td,
+.table-hover tbody tr:hover th {
+  background-color: #f5f5f5;
 }

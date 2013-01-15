@@ -36,14 +36,22 @@
         </li>
       </ul>
       <div class="right"> 
-        <a href="#" id="flag_link" class="btn">Flag</a>
-        <a href="#" id="skip_link" class="btn">Skip</a>
+        <button id="flag_link" class="btn">Flag</button>
+        <button id="skip_link" class="btn">Skip</button>
         Reward: <b id="current_money">Rs. 00.00</b></div>
         <div id="countdown"></div>
     </div>
   </header>
 
   <div class="wrap" id="container">
+      <div id="tmp_loader">
+        <h3>Loading your workspace...please wait...</h3>
+        <div class="bar_container rounded_bar_container blue_container">
+          <div class="bar_mortice rounded blue_mortice">
+            <div class="progress rounded blue" style="width: 0%;" id="progress_indicator"></div>
+          </div>
+        </div>
+      </div>
   </div>
 
 
@@ -62,7 +70,7 @@
 </script>
 
 <script type="text/template" id="spot_check_table">
-  <table>
+  <table class="table table-bordered">
     <thead>
       <tr>
         <th>Field</th>

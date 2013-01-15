@@ -1,3 +1,4 @@
+$('#progress_indicator').animate({width: '10%'}, 300);
 var LocalDS = { set: function(key, value){ return localStorage.setItem(key, value);},
                 get: function(key){return localStorage.getItem(key);},
                 find: function(key){ return localStorage.hasOwnProperty(key);}
@@ -9,10 +10,15 @@ var flag_view = new FlagView({ model: flag_task });
 
 var Task = new Main();
 var Task_view = new MainView({ model: Task });
-Task.fetch({ success: function(){ Task_view.render(); } });
+$('#progress_indicator').animate({width: '30%'}, 300);
+
+Task.fetch({ success: function(){
+  $('#progress_indicator').animate({width: '50%'}, 300);
+  Task_view.render();
+} });
 
 var CF = {
-  submit: function(){ var data = $('.render_frame:first').contents().find('form').serializeObject(); Task_view.post_and_render(data); },
+  submit: function(){ var data = $('.render_frame.current_task').contents().find('form').serializeObject(); Task_view.post_and_render(data); },
   skip_task: function(){ Task_view.skip(); },
   flag_task: function(){ flag_view.render(); }
 };
@@ -21,7 +27,7 @@ Mousetrap.bind('alt+f', function() { CF.flag_task(); });
 Mousetrap.bind('alt+s', function() { CF.skip_task(); });
 
 $('#skip_link, #time_over_next').live('click',function(){ $.facebox.close(); CF.skip_task(); });
-$('#continue').live('click',function(){ 
+$('#continue').live('click',function(){
   $.facebox.close();
   Task_view.flip_frame();
   Task_view.next_task();
