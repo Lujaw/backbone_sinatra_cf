@@ -20,7 +20,7 @@ var CF = {
 Mousetrap.bind('alt+f', function() { CF.flag_task(); });
 Mousetrap.bind('alt+s', function() { CF.skip_task(); });
 
-$('#skip_link, #time_over_next, #continue').live('click',function(){ $.facebox.close(); CF.skip_task(); });
+$('#skip_link, #time_over_next').live('click',function(){ $.facebox.close(); CF.skip_task(); });
 $('#continue').live('click',function(){ 
   $.facebox.close();
   Task_view.flip_frame();
@@ -34,6 +34,7 @@ $('#flag_form').live('submit',function(e){
   flag_task.set('reason', reason);
   $('#flag_form')[0].reset();
   $.facebox.close();
+  flag_task.set('assignment_id', Task_view.current.meta.assignment_id);
   flag_task.save();
   CF.skip_task();
 });

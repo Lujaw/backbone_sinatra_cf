@@ -3,9 +3,32 @@ require 'sinatra'
 require 'sinatra/base'
 require 'json'
 require 'pry'
+require 'opal'
+require 'uri'
+
+module RubyJS
+  def self.ruby_js
+      str = <<-EOF
+            def validate(options)
+              errors = []
+              options = JSON.parse(options)
+              middle_name = options[:middle_name]
+              unless middle_name.upcase == 'J.'
+                errors << {field: "middle_name", input: middle_name, expected: 'J.'}
+              end
+              age = options[:age]
+              unless age == '20'
+                errors << {field: "age", input: age, expected: '20'}
+              end
+              errors.to_json
+            end
+          EOF
+         URI::escape(str)
+  end
+end
 
 class MyApp < Sinatra::Base
-
+ 
 TASKS_ARR = [
            {"tweet_analyzer" => 
              {"inputs" => 
@@ -49,24 +72,31 @@ TASKS_ARR = [
   end
 
   get '/work' do
-    random_task = TASKS_ARR.shuffle.first 
+    random_task = TASKS_ARR.shuffle.last 
     template_id = random_task.keys.first
     sleep(0.5)
     data = { :template => template_id, 
         :inputs => random_task[template_id]['inputs'],
-        :meta => { :reward => random_task[template_id]['reward'], :assignment_id => random_task[template_id]['assignment_id'], :assignment_duration => random_task[template_id]['assignment_duration']}
+        :meta => { 
+          :reward => random_task[template_id]['reward'], :assignment_id => random_task[template_id]['assignment_id'], :assignment_duration => random_task[template_id]['assignment_duration']
+        }
       }
     int = rand(5)
     if (int == 3)
-      gold = [
+      note = [
         {:note => {:message => "1000 medical tasks just added to system. Enjoy.", :status => "notice"}},
         {:note => {:message => "Some cloudworkers are found to submit blank tasks. Stop doing it or you'll be automatically banned.", :status => "error"}}
         ].shuffle.first
-      data.merge!(gold)
-    elsif (int == 1)
-      data.merge!({:no_more_task => true})
+      data.merge!(note)
+    elsif (int == 4)
+     # data.merge!({:no_more_task => true})
     end
-      data.merge!({:gold => true})
+    if template_id == "census"
+      data.merge!({
+      :gold => true,
+      :spotboy => RubyJS.ruby_js
+      })
+    end
     content_type :json
       data.to_json
   end
@@ -78,8 +108,6 @@ TASKS_ARR = [
 
   post '/work' do
     puts JSON.parse(request.body.read)
-    content_type :json
-      {:text => "You nailed it man"}.to_json
   end
 
 end
